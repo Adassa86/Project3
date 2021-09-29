@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load cart %}
+{% load static %}
+{% block title %} Eshop | Product {% endblock %}
+{% block content %}
+
+<!-- The video -->
+
+
+<div container style="padding:70 px">
+         <div class="row" style="padding:70 px">
+
+       <div class="col-md-10" style="font-family: Lucida Handwriting; ">
+            <div class="row product-row mx-auto mb-2">
+                {% if products|length == 0 %}
+                <div >
+                    <strong>
+                        <h3>No Product Found!</h3>
+                    </strong>
+                </div>
+
+                {% elif products|length > 0 %}
+                    {% for product in products %}
+                    <div id="{{ product.id }}"  class="col-md-4 mb-4" style="font:Poppins;">
+                        <div class="card product-card mb-2" style="border:none; ">
+                            <a  href="/?id={{ product.id }}"><img class="card-img-top" src="{{ product.image.url }}" height="200px"  alt="Card image cap" style="  font-size: 40px;"></a>
+                            <div class="card-body" style="color: #F08080">
+                                <p class="card-title" style="text-align: center;font-family: Script MT; font-size: 18px " >{{ product.name|truncatechars:60 }}</p>
+                                <p class="card-text" style="text-align: center ;font-family: Lucida Handwriting;" >{{ product.price|currency }}</p>
+                                <form action="/#{{ product.id }}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ product.id }}" name="product">
+                                    {% if product|is_in_cart:request.session.cart %}
+                                    <a  class="btn " href="/cart"> in your cart </a>
+                                    {% else %}
+                                    <input class="btn " type="submit" value="Add to cart">
+                                    {% endif %}
+
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </>
+</div>
+
+<div id="navwrap">
+  <ul>
+    <li class="over">
+          <div>
+      <a style="font-family:Poppins; text-incident: 40px;"> About us </a>
+              <p style="font-family:Poppins; color:black;text-indent: 40px; padding:35px"> From birthdays and anniversaries to holiday gifts, we're your number one gifting destination for every special occasion . Not sure what to get ? We're here to help! This is where you will find one-of-akind gifts as unique and special as the people you're celebrating.</p>
+
+      </div>
+
+
+    </li>
+
+
+    <li>
+      <div>
+        <a style="font-family:Poppins;text-indent: 40px;" >Stay Connected!</a>
+          <p style="font-family:Poppins; color:black;text-indent: 40px; padding:25px">
+Follow us on instagram and facebook to discover our new creations, promotions, see photos, videos and lots of surprises</p>
+        <ul>
+          <li> <a href="https://www.facebook.com/adassb">
+
+                       <img  width="50px"  href="https://www.facebook.com/adassb" src="https://static.personalcreations.com/client/less/fonts/social_facebook.svg">
+                                    </a>
+          </li>
+          <li><a href="https://www.instagram.com/imaligift/">
+
+                       <img  width="50px"  href="https://www.instagram.com/imaligift/" src="https://cimages.personalcreations.com/is/image/planetartdmc/InstagramCircleLogo?wid=50&amp;hei=50&amp;fmt=png-alpha"">
+                        </a>
+          </li>
+
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div>
+        <a style="font-family:Poppins; text-indent: 40px">Payment Options</a>
+          <p style="font-family:Poppins; color:black;text-indent: 40px; padding:25px">
+We accept PayPal and credit and debit cards (American Express, VISA. MasterCard and Discover). We’re sorry, but we do not take cash, checks or CODs. Sales tax is automatically calculated </p>
+        <ul>
+          <li><img  width="60px" src="https://images.asos-media.com/navigation/visa-png" alt="VISA"></li>
+          <li><img  width="60px" src="https://images.asos-media.com/navigation/mastercard-png" alt="Mastercard"></li>
+          <li><img  width="60px" src="https://images.asos-media.com/navigation/pay-pal-png" alt="PayPal"></li>
+            <li><img  width="60px" src="https://images.asos-media.com/navigation/american-express-png" alt="American Express"></li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div>
+        <a style="font-family:Poppins; text-indent: 40px" >Keep in touch!</a>
+          <p style="font-family:Poppins; color: black ; padding:35px"> Contact us! <br>+972507492939 <br>
+              Sunday to Friday <br> 8:00 to 20:00 </p>
+        <ul>
+          <li><a href="https://https://web.whatsapp.com">
+                       <img href="https://https://web.whatsapp.com"  src="https://static.whatsapp.net/rsrc.php/yz/r/lOol7j-zq4u.svg">
+                                    </a></li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div>
+        <a style="font-family:Poppins;text-indent: 40px" > How to order?</a>
+   <p style="font-family:Poppins; color: WHITE;text-indent: 40px; padding:35px">
+        It’s as easy as 1,2,3. After ordering, we will contact you directly for order details and payment (usually within a few minutes of you ordering). <br> Secondly, we’ll let you know when your order has left our warehouse  with a picture of your gift ! <br> Thirdly, you will receive a confirmation that your package was delivered. We like to keep you in the loop every step of the way.
+<br> We are
+      </div>
+    </li>
+    <li>
+      <div>
+        <a style="font-family:Poppins ;text-indent: 40px" > Delivery and Conditions</a>
+          <p style="font-family:Poppins; color:black;text-indent: 40px; padding:35px"> Imaligift is a gift shop that delivers flowers to the central area , Ashdod ,Netanya and the surrounding area<br> we allow you a unique weaving of bouquets and luxury gifts at particularly attractive prices.<br>
+              A bouquet of flowers in a personal design, bouquets woven and designed by expert designers in the field of flowers.
+              You will find a variety of designs and examples of a variety of gifts that will suit any occasion . Prompt delivery of bouquets according to customer needs.
+
+You are welcome to order flower deliveries through the website   </p>
+      </div>
+    </li>
+  </ul>
+  </div>
+{% endblock %}
